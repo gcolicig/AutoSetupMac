@@ -1,1 +1,7 @@
 dotfiles/nvim/.config/nvim/lazy-lock.json
+
+# macOS
+.DS_Store
+
+# Tooling
+.serena/
