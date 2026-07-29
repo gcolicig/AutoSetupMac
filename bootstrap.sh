@@ -27,6 +27,16 @@ else
   echo "Warning: Brewfile not found in current directory"
 fi
 
+# Set up the Rust toolchain. Homebrew's rustup is keg-only and ships no toolchain,
+# so it has to be initialised explicitly before cargo, rustc or clippy exist.
+if ! command -v rustup &>/dev/null && [[ -x "$(brew --prefix rustup)/bin/rustup-init" ]]; then
+  echo "Initialising Rust toolchain..."
+  "$(brew --prefix rustup)/bin/rustup-init" -y --no-modify-path
+fi
+if [[ -x "$HOME/.cargo/bin/rustup" ]]; then
+  "$HOME/.cargo/bin/rustup" component add clippy rust-analyzer
+fi
+
 # Install Zap ZSH plugin manager
 if [[ ! -d "${XDG_DATA_HOME:-$HOME/.local/share}/zap" ]]; then
   echo "Installing Zap ZSH plugin manager..."
