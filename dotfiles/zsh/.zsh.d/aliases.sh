@@ -34,3 +34,15 @@ if command -v colima >/dev/null; then
   alias csp='colima stop'
   alias cstt='colima status'
 fi
+
+# Use a project prompt when present, otherwise use the global Qwen prompt.
+# An explicitly supplied QWEN_SYSTEM_MD always takes precedence.
+qwen() {
+  if [[ -n "${QWEN_SYSTEM_MD:-}" ]]; then
+    command qwen "$@"
+  elif [[ -f "$PWD/.qwen/system.md" ]]; then
+    QWEN_SYSTEM_MD="$PWD/.qwen/system.md" command qwen "$@"
+  else
+    QWEN_SYSTEM_MD="$HOME/.qwen/system.md" command qwen "$@"
+  fi
+}
