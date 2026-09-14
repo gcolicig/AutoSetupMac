@@ -1,4 +1,7 @@
 # CLI Tools
+# Optional oMLX tap; install manually per the oMLX README while its formula
+# remains incompatible with Homebrew 7.
+# tap "jundot/omlx", "https://github.com/jundot/omlx"
 brew "git"
 brew "fzf"
 brew "ripgrep"
@@ -23,8 +26,10 @@ brew "docker"
 brew "incus"        # Incus client for Colima's Incus runtime
 brew "helix"
 brew "superfile"
-brew "CleverCloud/misc/mdr"
-brew "jundot/omlx/omlx"
+# Optional: mdr download currently returns a GitHub 504 on this host.
+# brew "CleverCloud/misc/mdr"
+# Optional: oMLX's current formula is rejected as invalid by Homebrew 7.
+# brew "omlx"
 brew "just"
 brew "pnpm"
 brew "rustup"

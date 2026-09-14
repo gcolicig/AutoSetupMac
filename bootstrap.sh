@@ -96,7 +96,10 @@ echo "Applying macOS preferences..."
 # also covers caches that are deleted and later recreated at the same location.
 exclude_from_backups() {
 	local path
-	sudo -v
+	if ! sudo -n -v 2>/dev/null; then
+		echo "Skipping Time Machine cache exclusions: interactive sudo is required."
+		return 0
+	fi
 	for path in "$@"; do
 		echo "Excluding from Time Machine: $path"
 		sudo tmutil addexclusion -p "$path"
