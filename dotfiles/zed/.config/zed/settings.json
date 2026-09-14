@@ -1,0 +1,16 @@
+{
+  "markdown_preview_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_family": "InaiMathi",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "format_on_save": "on",
+  "remove_trailing_whitespace_on_save": true,
+  "ensure_final_newline_on_save": true,
+  "autosave": "on_focus_change",
+  "restore_on_startup": "last_session",
+  "session": {
+    "restore_unsaved_buffers": true
+  }
+}

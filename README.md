@@ -53,12 +53,12 @@ The Brewfile covers all the essentials:
 ### 🧰 CLI Tools
 
 git, fzf, ripgrep, bat, htop, lazygit, jq, gh, git-delta, zoxide, eza,
-fd, stow, todo-txt, hf, colima, coreutils, gnu-sed, findutils,
-gawk and Antidote
+fd, stow, todo-txt, hf, colima, incus, coreutils, gnu-sed, findutils,
+gawk, Antidote, Docker, oMLX, pnpm, Rustup, uv, XcodeGen, yq and yt-dlp
 
 ### 💻 GUI Apps
 
-Marta, Zed, Ghostty and Discord
+Marta, Zed, Ghostty, Discord, Ollama and OrbStack
 
 ### 🖥️ Fonts
 
@@ -90,6 +90,23 @@ the Bitwarden desktop app.
 `direnv` and its shell hook are included as commented optional settings. Agent
 Vault is likewise documented as a commented installer in `bootstrap.sh`; review
 and enable it manually if credential brokering for AI agents is required.
+
+Zed settings are managed as dotfiles. The repository also includes portable
+oMLX and OrbStack configuration snapshots plus the selected Ice preferences.
+Apply the latter after installing the relevant apps with:
+
+```sh
+./scripts/apply-app-configs.sh
+```
+
+The script never overwrites existing oMLX or OrbStack configuration files.
+Its oMLX snapshot deliberately omits API keys, proxy settings and machine-local
+host aliases.
+
+Colima with Incus is prepared for work-Mac Agent/COI experiments. After running
+the bootstrap, see [docs/COLIMA_INCUS_WORK.md](docs/COLIMA_INCUS_WORK.md) and
+run `./scripts/setup-work-colima-incus.sh` when you are ready to create the
+`work-incus` Colima profile.
 
 
 ## 📁 Dotfiles & Config

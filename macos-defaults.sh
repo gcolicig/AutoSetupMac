@@ -99,6 +99,12 @@ defaults write NSGlobalDomain AppleScrollerPagingBehavior -bool true
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
+# Window tiling / snapping
+defaults write com.apple.WindowManager EnableTilingByEdgeDrag -bool true
+defaults write com.apple.WindowManager EnableTopTilingByEdgeDrag -bool true
+defaults write com.apple.WindowManager EnableTilingOptionAccelerator -bool true
+defaults write com.apple.WindowManager EnableTiledWindowMargins -bool true
+
 # Optional clean-session behavior. Enable individually if apps and login
 # sessions should not restore their previous windows automatically.
 # defaults write com.apple.loginwindow TALLogoutSavesState -bool false
@@ -158,4 +164,4 @@ defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 1
 # Kept as documentation only; do not enable without a specific reason.
 # defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-killall Dock Finder SystemUIServer cfprefsd 2>/dev/null || true
+killall Dock Finder SystemUIServer WindowManager cfprefsd 2>/dev/null || true

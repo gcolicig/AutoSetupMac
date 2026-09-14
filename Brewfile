@@ -3,6 +3,7 @@ brew "git"
 brew "fzf"
 brew "ripgrep"
 brew "bat"
+brew "tmux"
 brew "htop"
 brew "lazygit"
 brew "jq"
@@ -17,6 +18,19 @@ brew "stow"
 brew "todo-txt"
 brew "hf"           # Hugging Face Hub CLI
 brew "colima"       # Linux VM for the planned Incus host
+brew "docker"
+brew "incus"        # Incus client for Colima's Incus runtime
+brew "helix"
+brew "superfile"
+brew "CleverCloud/misc/mdr"
+brew "jundot/omlx/omlx"
+brew "just"
+brew "pnpm"
+brew "rustup"
+brew "uv"
+brew "xcodegen"
+brew "yq"
+brew "yt-dlp"
 brew "shellcheck"
 brew "shfmt"
 
@@ -24,6 +38,10 @@ brew "shfmt"
 # brew "mas"          # Mac App Store command-line interface
 # brew "dockutil"     # Deterministic Dock layout management
 # brew "mise"         # Alternative runtime manager; nvm is active here
+# Excalidraw CLI options are intentionally not installed through Homebrew:
+# - PyPI package: pipx install excalidraw-cli
+# - Tommy Walkie package: npm install -g @tommywalkie/excalidraw-cli
+# They expose overlapping command names and should be enabled deliberately.
 
 # Languages n stuff
 brew "python"
@@ -43,6 +61,8 @@ cask "marta"
 cask "zed"
 cask "ghostty"
 cask "discord"
+cask "ollama-app"
+cask "orbstack"
 
 # Optional applications retained as documentation:
 # cask "visual-studio-code" # Zed is the active editor

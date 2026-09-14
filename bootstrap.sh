@@ -54,7 +54,7 @@ fi
 # Use GNU Stow to symlink dotfiles
 echo "Setting up dotfiles with GNU Stow..."
 mkdir -p "$HOME/DB"
-stow --restow --target="$HOME" --dir="$REPO_DIR/dotfiles" zsh ghostty
+stow --restow --target="$HOME" --dir="$REPO_DIR/dotfiles" zsh ghostty zed
 # Optional Vim configuration:
 # stow --restow --target="$HOME" --dir="$REPO_DIR/dotfiles" vim
 
@@ -82,6 +82,60 @@ fi
 
 echo "Applying macOS preferences..."
 "$REPO_DIR/macos-defaults.sh"
+
+# Exclude reproducible package and build caches from Time Machine by path. This
+# also covers caches that are deleted and later recreated at the same location.
+exclude_from_backups() {
+	local path
+	sudo -v
+	for path in "$@"; do
+		echo "Excluding from Time Machine: $path"
+		sudo tmutil addexclusion -p "$path"
+	done
+}
+
+exclude_from_backups \
+	"$HOME/.npm" \
+	"$HOME/Library/pnpm/store" \
+	"$HOME/Library/Caches/Yarn" \
+	"$HOME/.bun/install/cache" \
+	"$HOME/.cache/pip" \
+	"$HOME/Library/Caches/pip" \
+	"$HOME/Library/Caches/uv" \
+	"$HOME/.cache/uv" \
+	"$HOME/Library/Caches/pypoetry" \
+	"$HOME/miniconda3/pkgs" \
+	"$HOME/.m2/repository" \
+	"$HOME/Library/Caches/Homebrew" \
+	"$HOME/.cargo/registry" \
+	"$HOME/.cargo/git" \
+	"$HOME/go/pkg/mod/cache" \
+	"$HOME/Library/Caches/go-build" \
+	"$HOME/.gradle/caches" \
+	"$HOME/Library/Caches/Coursier" \
+	"$HOME/Library/Developer/Xcode/DerivedData" \
+	"$HOME/Library/Caches/org.swift.swiftpm" \
+	"$HOME/Library/Android/sdk/.temp" \
+	"$HOME/.android/cache" \
+	"$HOME/Library/Caches/com.docker.docker" \
+	"$HOME/Library/Caches/kind" \
+	"$HOME/.kube/cache" \
+	"$HOME/.minikube/cache" \
+	"$HOME/.cache/lm-studio" \
+	"$HOME/Library/Application Support/LM Studio/models" \
+	"$HOME/.ollama/models" \
+	"$HOME/.cache/huggingface" \
+	"$HOME/Library/Caches/huggingface" \
+	"$HOME/.omlx/cache" \
+	"$HOME/.cache/torch" \
+	"$HOME/.cache/whisper" \
+	"$HOME/.cache/llama.cpp" \
+	"$HOME/.cache/git" \
+	"$HOME/Library/Caches/VisualStudioCode" \
+	"$HOME/Library/Application Support/Code/Cache" \
+	"$HOME/Library/Application Support/Code/CachedData" \
+	"$HOME/Library/Caches/JetBrains" \
+	"$HOME/Library/Logs/JetBrains"
 
 git config --global init.defaultBranch main
 git config --global pull.rebase false

@@ -5,11 +5,13 @@ between macOS releases.
 
 ## Window management
 
-In **System Settings → Desktop & Dock**, review:
+The bootstrap enables the known macOS window tiling / snapping defaults. In
+**System Settings → Desktop & Dock**, review after running it:
 
 - Tile by dragging windows to screen edges: enabled
+- Drag windows to the menu bar to fill the screen: enabled
+- Hold Option while dragging windows to tile: enabled
 - Hold the pointer over the green button to show tiling options: enabled
-- Show suggested tiled windows: enabled
 - Move tiled windows by dragging: enabled
 - Tiled windows have margins: enabled
 - Stage Manager: disabled
@@ -46,6 +48,24 @@ Further commented examples are kept next to the active configuration:
   deliberately discouraged Gatekeeper-quarantine override
 - `bootstrap.sh`: deterministic Dock layout using `dockutil`
 - `Brewfile`: optional `mas`, `dockutil`, `mise`, Visual Studio Code and Obsidian
+- `scripts/setup-work-colima-incus.sh`: Work Mac Colima/Incus profile for the
+  later Agent/COI setup; review CPU, memory, disk and mount settings before use
+
+## Colima/Incus work profile
+
+The work profile uses Colima's Incus runtime and mounts `~/Code` into the Linux
+VM. Before running it, verify that this broad mount is acceptable for the work
+machine.
+
+```sh
+./scripts/setup-work-colima-incus.sh
+```
+
+For smaller machines:
+
+```sh
+COLIMA_INCUS_CPU=4 COLIMA_INCUS_MEMORY=8 COLIMA_INCUS_DISK=80 ./scripts/setup-work-colima-incus.sh
+```
 
 ## Protected app preferences
 

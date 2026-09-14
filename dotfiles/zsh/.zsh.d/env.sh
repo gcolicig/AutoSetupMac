@@ -43,3 +43,7 @@ fi
 
 typeset -U path PATH
 path=("$HOME/.local/bin" "$HOME/bin" $path)
+
+if command -v qwen >/dev/null; then
+  QWEN_SYSTEM_MD=1
+fi
