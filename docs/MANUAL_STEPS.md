@@ -111,6 +111,6 @@ The same temporary Full Disk Access method can be used to retry all protected
 defaults:
 
 ```sh
-cd ~/Code/MacAutoSetup
+cd ~/Code/AutoSetupMac
 ./macos-defaults.sh
 ```

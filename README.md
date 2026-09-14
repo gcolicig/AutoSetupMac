@@ -1,4 +1,4 @@
-# 🛠️ MacAutoSetup
+# 🛠️ AutoSetupMac
 
 A lean, modern and terminal-focused development environment for macOS.
 
@@ -28,15 +28,15 @@ or something like that, please point that out to me and let me know!
 ### ✅ If you have Git
 
 ```sh
-git clone https://github.com/NLaundry/MacAutoSetup.git ~/Projects/MacAutoSetup
-cd ~/Projects/MacAutoSetup
+git clone https://github.com/gcolicig/AutoSetupMac.git ~/Projects/AutoSetupMac
+cd ~/Projects/AutoSetupMac
 ./bootstrap.sh
 ```
 
 ### 🌀 If you only have curl (fresh macOS install)
 
 ```
-bash <(curl -fsSL https://raw.githubusercontent.com/NLaundry/MacAutoSetup/main/bootstrap-nogit.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/gcolicig/AutoSetupMac/main/bootstrap-nogit.sh)
 ```
 
 This will:

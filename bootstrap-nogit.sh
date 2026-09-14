@@ -2,10 +2,10 @@
 
 set -e
 
-REPO_URL="https://github.com/NLaundry/MacAutoSetup.git"
-CLONE_DIR="$HOME/Projects/MacAutoSetup"
+REPO_URL="https://github.com/gcolicig/AutoSetupMac.git"
+CLONE_DIR="$HOME/Projects/AutoSetupMac"
 
-echo "⏳ Bootstrapping MacAutoSetup..."
+echo "⏳ Bootstrapping AutoSetupMac..."
 
 # Step 1: Install Xcode Command Line Tools (includes Git)
 if ! command -v git &>/dev/null; then
@@ -36,7 +36,7 @@ fi
 
 # Step 3: Clone the repo if it hasn't been cloned yet
 if [ ! -d "$CLONE_DIR" ]; then
-	echo "📥 Cloning MacAutoSetup into $CLONE_DIR..."
+	echo "📥 Cloning AutoSetupMac into $CLONE_DIR..."
 	mkdir -p "$(dirname "$CLONE_DIR")"
 	git clone "$REPO_URL" "$CLONE_DIR"
 else
