@@ -52,5 +52,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 echo "Setting up dotfiles with GNU Stow..."
 stow --target="$HOME" --dir=./dotfiles zsh vim nvim aerospace
 
+# Apply macOS defaults managed by this repository.
+if [[ -x ./scripts/macos-defaults.sh ]]; then
+  echo "Applying macOS defaults..."
+  ./scripts/macos-defaults.sh
+fi
+
 # Optionally restart the shell
 exec zsh -l
