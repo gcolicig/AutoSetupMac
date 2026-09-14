@@ -1,42 +1,59 @@
-tap "nikitabobko/tap" # Aerospace
-tap "jorgerojas26/lazysql" 
-
 # CLI Tools
 brew "git"
 brew "fzf"
 brew "ripgrep"
-brew "fd"            # Fast, ergonomic file search
 brew "bat"
+brew "tmux"
 brew "htop"
 brew "lazygit"
-brew "lazysql"
+brew "jq"
 brew "awscli"
 brew "gh"
-brew "delta"
-brew "tmux"
+brew "git-delta"
+# brew "direnv"      # Optional: project-specific environment activation
+brew "zoxide"
+brew "eza"
+brew "fd"
 brew "stow"
-brew "neovim"
-brew "just"          # Task runner for canonical project commands
-brew "kubectl"       # Kubernetes CLI
-brew "tailscale"     # Secure mesh VPN for homelab and remote access
+# brew "tailscale"   # Optional: secure mesh VPN
+brew "todo-txt"
+brew "hf"           # Hugging Face Hub CLI
+brew "colima"       # Linux VM for the planned Incus host
+brew "docker"
+brew "incus"        # Incus client for Colima's Incus runtime
+brew "helix"
+brew "superfile"
+brew "CleverCloud/misc/mdr"
+brew "jundot/omlx/omlx"
+brew "just"
+brew "pnpm"
+brew "rustup"
+brew "uv"
+brew "xcodegen"
+brew "yq"
+brew "yt-dlp"
+brew "shellcheck"
+brew "shfmt"
+brew "semgrep"
+brew "xq"
+brew "xmlstarlet"
+brew "mq"
 
-# Structured Data Processors
-brew "jq"            # JSON
-brew "yq"            # YAML, JSON and more
-brew "xq"            # XML/HTML extraction, jq-like
-brew "xmlstarlet"    # XML toolkit with XPath and namespace support
-brew "mq"            # Markdown querying, jq-like (https://mqlang.org)
-
-# Linting and Static Analysis
-brew "shellcheck"    # Shell script checker
-brew "semgrep"       # Rule-based code and security scanning
+# Optional tooling retained as documentation:
+# brew "mas"          # Mac App Store command-line interface
+# brew "dockutil"     # Deterministic Dock layout management
+# brew "mise"         # Alternative runtime manager; nvm is active here
+# Excalidraw CLI options are intentionally not installed through Homebrew:
+# - PyPI package: pipx install excalidraw-cli
+# - Tommy Walkie package: npm install -g @tommywalkie/excalidraw-cli
+# They expose overlapping command names and should be enabled deliberately.
 
 # Languages n stuff
 brew "python"
 brew "pipx"
-brew "node"
 brew "nvm"
-brew "rustup"        # Rust toolchain installer (provides cargo, rustc, clippy)
+brew "antidote"
+brew "starship"
 
 # GNU Utilities
 brew "coreutils"
@@ -45,18 +62,19 @@ brew "findutils"
 brew "gawk"
 
 # GUI Applications
-# cask "iterm2"
-cask "visual-studio-code"
-# cask "raycast"
-# cask "docker"
+cask "marta"
+cask "zed"
 cask "ghostty"
-cask "aerospace"
-cask "caffeine"
-# cask "discord"
-# cask "chatgpt"
-cask "shottr"
-# cask "zoom" - I don't want to install this by default
+cask "discord"
+cask "ollama-app"
+cask "orbstack"
+
+# Optional applications retained as documentation:
+# cask "visual-studio-code" # Zed is the active editor
+# cask "obsidian"
+
+# Terax currently has no official Homebrew cask. Install its signed macOS DMG
+# from https://terax.app/ until an official cask becomes available.
 
 # Fonts
 cask "font-jetbrains-mono-nerd-font"
-

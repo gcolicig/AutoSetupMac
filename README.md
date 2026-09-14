@@ -1,13 +1,12 @@
 # 🛠️ MacAutoSetup
 
-A lean, modern development environment for macOS that brings the Linux tiling window manager experience to Mac — with minimal fuss.
+A lean, modern and terminal-focused development environment for macOS.
 
 ## ✨ Core Features
 
-- 🚀 Zsh with Zap — plugin manager for a clean, fast shell
-- 🧠 Raycast — fast launcher & automation
-- 🪟 Aerospace — tiling window management (like i3, for Mac)
-- 🧑‍💻 Astronvim — full-featured, sane Neovim IDE config
+- 🚀 Zsh with Antidote — plugin manager for a clean, fast shell
+- ✨ Starship — portable prompt with Nerd Font symbols
+- 🧑‍💻 Zed — fast native editor for macOS
 - 🧘 Minimal Vim config — if you want to keep it light
 - 🖋️ GNU Stow — simple, modular dotfile management
 - 🧰 Essential GNU utilities — sed, coreutils, gawk, etc.
@@ -18,40 +17,10 @@ A lean, modern development environment for macOS that brings the Linux tiling wi
 - Terminal-first, keyboard-driven workflow
 - Get up and running fast
 - Modular, understandable configuration — no hidden magic
-- LOW configuration (I use tmux a lot but 0 config for it) for improved portability
+- Low configuration for improved portability
 - Dotfile hygiene - I yoinked the .zsh.d idea from a youtube video that I have 
 forgotten but would LOVE to credit. If someone knows the video on "the dot problem" 
 or something like that, please point that out to me and let me know!
-
-
-### You may be asking, why astronvim? Aren't you a vim nerd who handles his own config
-
-Okay ... so, here's my thinking about astronvim.
-
-I have run my own vim configs for almost 10 years now. I love it. It's fun. It breaks a lot!
-
-I've come to some conclusions about **CONFIGURATION**:
-1. The less you configure things, the more portable your knowledge of the thing is.
-2. The less you configure things, the more you learn THE TOOL ITSELF, instead of YOUR CONFIGURATION of that tool
-3. Leverage Defaults and Leverage Community
-
-So I prefer to use defaults as much as possible OR leverage things maintained by a community.
-
-Astronvim is the latter. I keep 0 plugin, minimal configuration Vim too for lightweight editing.
-- together, these require next to no configuration on my part and give me 99% of the workflow I was used to with a home-grown config
-
-It feels, to me, as if the neovim community has converged on a mostly consistent set of tools and hotkeys 
-for the general flow of neovim as pseudo-IDE. I ran the Primeagen's Neovim setup tutorial + my own tweaks 
-for a few years, and it was great but eventually things broke. I just got tired of fixing my editor instead of 
-editing.
-
-Given, that I feel neovim as a pseudo-IDE has mostly converged ... most "neovim distributions" feel pretty close 
-to what I'd expect and what I was already using with my home-grown config.
-
-So Astronvim gives me what I expect and mostly already had, while off-loading maintenance to a community.
-
-I would, however, HIGHLY RECOMMEND, if you don't know Vim or, have never managed your own config, to run vanilla vim 
-as well as try managing your own config for a bit. You will learn things. Also read practical vim.
 
 
 ## 🔧 Installation
@@ -83,11 +52,13 @@ The Brewfile covers all the essentials:
 
 ### 🧰 CLI Tools
 
-git, fzf, ripgrep, bat, htop, lazygit, lazysql, awscli, jq, gh, tmux, stow, neovim, kubectl, tailscale, coreutils, gnu-sed, findutils, gawk
+git, fzf, ripgrep, bat, htop, lazygit, jq, gh, git-delta, zoxide, eza,
+fd, stow, todo-txt, hf, colima, incus, coreutils, gnu-sed, findutils,
+gawk, Antidote, Docker, oMLX, pnpm, Rustup, uv, XcodeGen, yq and yt-dlp
 
 ### 💻 GUI Apps
 
-raycast, aerospace, ghostty, iterm2, visual-studio-code, docker, caffeine
+Marta, Zed, Ghostty, Discord, Ollama and OrbStack
 
 ### 🖥️ Fonts
 
@@ -95,7 +66,47 @@ JetBrains Mono Nerd Font (for beautiful glyphs and coding ligatures)
 
 ### 🧪 Dev Environment
 
-python, pipx, node, nvm
+python, pipx and Node.js LTS managed through nvm
+
+The setup also applies an opinionated set of macOS preferences covering the
+Dock and Mission Control, Finder, screenshots, keyboard and text input,
+trackpad, save/print dialogs, TextEdit, Mail, Terminal, Safari, Xcode, Activity
+Monitor and automatic security updates. Screenshots are stored in
+`~/Screenshots`. Review `macos-defaults.sh` before running the bootstrap if you
+prefer different values, and see `docs/MANUAL_STEPS.md` for settings that remain
+manual.
+
+If macOS protects Mail, Safari or Archive Utility preferences, the bootstrap
+prints a warning and `docs/MANUAL_STEPS.md` provides the corresponding UI path
+or safe manual command.
+The window corner radius is set to the classic AppKit-style value `10`. To
+restore the macOS default, run `defaults delete -g NSConvolutionOverride1` and
+restart Finder and any open applications.
+
+Rosetta 2 is installed automatically on Apple Silicon when it is not already
+active. Bitwarden's SSH agent is used automatically once it has been enabled in
+the Bitwarden desktop app.
+
+`direnv` and its shell hook are included as commented optional settings. Agent
+Vault is likewise documented as a commented installer in `bootstrap.sh`; review
+and enable it manually if credential brokering for AI agents is required.
+
+Zed settings are managed as dotfiles. The repository also includes portable
+oMLX and OrbStack configuration snapshots plus the selected Ice preferences.
+Apply the latter after installing the relevant apps with:
+
+```sh
+./scripts/apply-app-configs.sh
+```
+
+The script never overwrites existing oMLX or OrbStack configuration files.
+Its oMLX snapshot deliberately omits API keys, proxy settings and machine-local
+host aliases.
+
+Colima with Incus is prepared for work-Mac Agent/COI experiments. After running
+the bootstrap, see [docs/COLIMA_INCUS_WORK.md](docs/COLIMA_INCUS_WORK.md) and
+run `./scripts/setup-work-colima-incus.sh` when you are ready to create the
+`work-incus` Colima profile.
 
 
 ## 📁 Dotfiles & Config
@@ -107,10 +118,7 @@ Directory structure:
 ```
 dotfiles/
 ├── zsh/
-├── nvim/        # Minimal Neovim config
-├── vim/         # Classic Vim config (optional)
-├── aerospace/   # Tiling window manager config
-├── iterm2/
+├── vim/         # Classic Vim config (present, but not linked by default)
 ├── ghostty/
 └── …
 ```
@@ -118,15 +126,14 @@ dotfiles/
 Each folder maps to $HOME. For example:
 
 ```
-stow –target=$HOME zsh nvim ghostty
+stow --target=$HOME zsh ghostty
 ```
 
 creates symlinks for config files in your home directory.
 
 ## ✅ Result
 
-- Feels like Arch or Debian with i3, but polished for Mac
-- Astronvim or minimal Vim: pick your workflow
-- Tiling window control and keybindings
+- A compact, keyboard-friendly macOS development environment
+- Zed for development
 - Clean terminal with Nerd Font and modern CLI tools
-- Shell and dev tools ready for Python, Node, AWS, and Kubernetes
+- Shell and development tools ready for Python, Node and Hugging Face

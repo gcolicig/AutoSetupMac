@@ -1,7 +1,6 @@
-dotfiles/nvim/.config/nvim/lazy-lock.json
+.zcompdump*
+dotfiles/zsh/.zcompdump*
 
-# macOS
+# macOS and local tooling
 .DS_Store
-
-# Tooling
 .serena/
