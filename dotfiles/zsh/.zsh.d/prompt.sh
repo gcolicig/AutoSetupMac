@@ -5,9 +5,10 @@ show_tool_guide() {
   print -P "${C}│${R} ${Y}Navigation${R}  z <name> (zoxide) · fd <name> · Ctrl+R (fzf history)"
   print -P "${C}│${R} ${Y}Files${R}       ll · la · tree (eza) · rg <text>"
   print -P "${C}│${R} ${Y}Git${R}         git · gh · lazygit · delta-powered diffs"
-  print -P "${C}│${R} ${Y}Data${R}        jq (JSON) · sed/gsed · awk/gawk · find/gfind"
+  print -P "${C}│${R} ${Y}Data${R}        jq · yq · xq · xmlstarlet · mq · sed/gsed · awk/gawk"
+  print -P "${C}│${R} ${Y}Quality${R}      shellcheck · shfmt · semgrep"
   print -P "${C}│${R} ${Y}System${R}      htop · stow · todo.sh"
-  print -P "${C}│${R} ${Y}Development${R} python · pipx · nvm/Node LTS · hf · zed"
+  print -P "${C}│${R} ${Y}Development${R} python · pipx · nvm/Node LTS · Rustup/Cargo · hf · zed"
   print -P "${C}│${R} ${Y}Shell${R}       Starship prompt · Antidote plugins · Ghostty · Nerd Font"
   print -P "${C}│${R} ${Y}Apps${R}        Marta · Zed · Ghostty · Discord"
   print -P "${C}├─ COLIMA → INCUS → DOCKER ───────────────────────────────────────────────┤${R}"
@@ -19,6 +20,9 @@ show_tool_guide() {
   print -P "${C}├──────────────────────────────────────────────────────────────────────────┤${R}"
   print -P "${C}│${R} ${G}Aliases${R}     db · todo/t · ta/td/tl/tp/te · cst/csp/cstt (Colima)"
   print -P "${C}│${R} ${M}GNU note${R}    find is GNU find; fd is simpler, but uses different options"
+  if (( $+commands[omlx] )); then
+    print -P "${C}│${R} ${Y}oMLX${R}         omlx start · omlx stop · omlx restart"
+  fi
   print -P "${C}│${R} ${W}Help${R}        guide shows this overview again"
   print -P "${C}└──────────────────────────────────────────────────────────────────────────┘${R}\n"
 }
